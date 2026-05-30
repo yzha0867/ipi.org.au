@@ -200,7 +200,7 @@
       "Assessment Centre": "评估中心",
       "Official assessment entry page for Jane Doe, application IPI-PA-2026-001256. Use this page to check the exam cover details and upcoming schedule.": "Jane Doe 的官方评估入口页，申请编号 IPI-PA-2026-001256。可在此查看考试封面信息和后续日程。",
       "Action required": "需要处理",
-      "Confirm attendance by 30 June 2026 and upload supporting documents before 30 June 2026.": "请在 2026 年 6 月 30 日前确认出席，并在 6 月 30 日前上传支持文件。",
+      "Confirm attendance by 30 June 2026 and upload supporting documents before 27 June 2026.": "请在 2026 年 6 月 30 日前确认出席，并在 6 月 27 日前上传支持文件。",
       "Upload documents": "上传文件",
       "Applicant": "申请人",
       "Co-applicant": "共同申请人",

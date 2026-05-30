@@ -15,8 +15,8 @@
       id: "income-id-upload",
       title: "Upload income and ID documents",
       titleZh: "上传收入和身份证明文件",
-      detail: "Upload supporting documents before 30 June 2026.",
-      detailZh: "请在 2026 年 6 月 30 日前上传支持文件。",
+      detail: "Upload supporting documents before 27 June 2026.",
+      detailZh: "请在 2026 年 6 月 27 日前上传支持文件。",
       href: "submission.html",
       priority: "Documents"
     },
@@ -75,8 +75,8 @@
     }
     if (task.id === "income-id-upload") {
       return zh
-        ? `请在 ${timeLabels.zhShort} 前上传支持文件。`
-        : `Upload supporting documents before ${timeLabels.shortDate}.`;
+        ? `请在 ${timeLabels.docZhShort} 前上传支持文件。`
+        : `Upload supporting documents before ${timeLabels.docShortDate}.`;
     }
     return zh ? task.detailZh : task.detail;
   };

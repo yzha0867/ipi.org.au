@@ -128,11 +128,15 @@
     if (selectedDate) selectedDate.textContent = `Selected: ${formatShort(base)}`;
   };
 
+  const EXAM_DATE = makeLocalDate({ year: 2026, month: 6, day: 30 });
+  const DOC_DEADLINE = makeLocalDate({ year: 2026, month: 6, day: 27 });
+
   const updatePage = (date) => {
-    const examDate = makeLocalDate({ year: 2026, month: 6, day: 30 });
-    const longDate = formatLong(examDate);
-    const shortDate = formatShort(examDate);
-    const dayMonth = formatDayMonth(examDate);
+    const longDate = formatLong(EXAM_DATE);
+    const shortDate = formatShort(EXAM_DATE);
+    const dayMonth = formatDayMonth(EXAM_DATE);
+    const docShortDate = formatShort(DOC_DEADLINE);
+    const docZhShort = formatZhShort(DOC_DEADLINE);
 
     document.querySelectorAll(".greeting-text .sub").forEach((node) => {
       node.innerHTML = `
@@ -149,10 +153,10 @@
     document.querySelectorAll(".hero-note p").forEach((node) => {
       const text = node.textContent;
       if (/Confirm attendance|upload supporting documents/.test(text)) {
-        node.textContent = `Confirm attendance by ${shortDate} and upload supporting documents before ${shortDate}.`;
+        node.textContent = `Confirm attendance by ${shortDate} and upload supporting documents before ${docShortDate}.`;
       }
       if (/All files must be submitted/.test(text)) {
-        node.textContent = `All files must be submitted by ${shortDate}, 6:00 PM Sydney time.`;
+        node.textContent = `All files must be submitted by ${docShortDate}, 10:00 AM Sydney time.`;
       }
     });
 
@@ -170,7 +174,7 @@
 
     updateCalendar(date);
     window.dispatchEvent(new CustomEvent("ipitimechange", {
-      detail: { date, shortDate, dayMonth, longDate, zhShort: formatZhShort(date), zhLong: formatZhLong(date) }
+      detail: { date, shortDate, dayMonth, longDate, zhShort: formatZhShort(EXAM_DATE), zhLong: formatZhLong(EXAM_DATE), docShortDate, docZhShort }
     }));
   };
 

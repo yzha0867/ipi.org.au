@@ -25,14 +25,14 @@
       kicker: zh ? "文件" : "Documents",
       confirmTitle: zh ? "确认提交文件？" : "Submit these documents?",
       confirmBody: zh
-        ? "提交后，评估页和课程页的文件入口会显示为“更新文件”。你之后仍可回到本页替换或补充材料。"
-        : "After submission, document entry points on the assessment and course pages will show Update documents. You can still return here to replace or add files.",
+        ? “提交后，评估页和课程页的按钮会更新为”更新文件”，你可以随时回来替换或补充材料。”
+        : “Once submitted, the button on your assessment and course pages will change to Update documents — you can come back any time to replace or add files.”,
       cancel: zh ? "取消" : "Cancel",
       confirm: zh ? "确认提交" : "Confirm submission",
       submittedTitle: zh ? "文件已提交" : "Documents submitted",
       submittedBody: zh
-        ? "IPI 已记录本次申请文件。关闭后将返回上一级页面，相关入口会更新为“更新文件”。"
-        : "IPI has recorded this document submission. Closing this message returns to the previous page, and related entry points will show Update documents.",
+        ? “你的文件已提交成功。点击完成将返回上一页，日后可随时通过”更新文件”按钮补充或替换材料。”
+        : “Your documents have been received. Click Done to go back — you can update your files any time using the Update documents button.”,
       close: zh ? "完成并返回" : "Done and return",
       submit: zh ? "提交文件" : "Submit documents",
       update: zh ? "更新文件" : "Update documents",
