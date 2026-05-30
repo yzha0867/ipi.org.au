@@ -129,9 +129,10 @@
   };
 
   const updatePage = (date) => {
-    const longDate = formatLong(date);
-    const shortDate = formatShort(date);
-    const dayMonth = formatDayMonth(date);
+    const examDate = makeLocalDate({ year: 2026, month: 6, day: 30 });
+    const longDate = formatLong(examDate);
+    const shortDate = formatShort(examDate);
+    const dayMonth = formatDayMonth(examDate);
 
     document.querySelectorAll(".greeting-text .sub").forEach((node) => {
       node.innerHTML = `
