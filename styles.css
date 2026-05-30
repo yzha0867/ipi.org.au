@@ -53,7 +53,7 @@ a { color: inherit; }
 .un-strip a { text-decoration: none; color: rgba(255,255,255,.70); }
 .strip-logo { min-width: 0; flex: 0 1 auto; gap: 10px; }
 .strip-logo .logo-mark { width: 34px; height: 34px; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,.16); }
-.strip-logo .logo-text { color: #fff; font-size: 15px; }
+.strip-logo .logo-text { color: #fff; font-size: 22px; }
 .strip-logo .logo-text small { color: rgba(255,255,255,.66); font-size: 8.5px; }
 
 .nav { background: var(--surface); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 50; }
@@ -61,11 +61,11 @@ a { color: inherit; }
 .logo { display: flex; align-items: center; gap: 12px; min-width: 315px; flex: 0 0 315px; }
 .logo-mark { width: 46px; height: 46px; border-radius: 10px; overflow: hidden; flex: 0 0 auto; box-shadow: 0 1px 3px rgba(26, 77, 46, .15); }
 .logo-mark img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.logo-text { font-family: Fraunces, Georgia, serif; font-size: 17px; font-weight: 600; line-height: 1.15; letter-spacing: -.01em; color: var(--text); white-space: nowrap; }
+.logo-text { font-family: Fraunces, Georgia, serif; font-size: 22px; font-weight: 600; line-height: 1.15; letter-spacing: -.01em; color: var(--text); white-space: nowrap; }
 .logo-text small { display: block; margin-top: 2px; color: var(--text-muted); font: 600 9.5px/1.1 "Plus Jakarta Sans"; letter-spacing: .1em; text-transform: uppercase; white-space: nowrap; }
 .un-strip .strip-logo { min-width: 0; flex: 0 1 auto; gap: 10px; }
 .un-strip .strip-logo .logo-mark { width: 34px; height: 34px; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,.16); }
-.un-strip .strip-logo .logo-text { color: #fff; font-size: 15px; }
+.un-strip .strip-logo .logo-text { color: #fff; font-size: 22px; }
 .un-strip .strip-logo .logo-text small { color: rgba(255,255,255,.66); font-size: 8.5px; }
 .strip-search { position: relative; min-width: 280px; max-width: 460px; flex: 0 1 460px; margin-left: auto; height: 40px; display: grid; grid-template-columns: auto 1fr 46px; align-items: center; background: var(--surface); border: 1px solid var(--border); border-radius: 999px; box-shadow: 0 1px 0 rgba(26,77,46,.05); }
 .search-scope { height: 100%; border: 0; border-right: 1px solid var(--border); background: var(--bg-soft); color: var(--text-secondary); padding: 0 14px; font: 800 12px "Plus Jakarta Sans"; cursor: pointer; border-radius: 999px 0 0 999px; }
