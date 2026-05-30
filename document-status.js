@@ -25,8 +25,8 @@
       kicker: zh ? "文件" : "Documents",
       confirmTitle: zh ? "确认提交文件？" : "Submit these documents?",
       confirmBody: zh
-        ? “提交后，评估页和课程页的按钮会更新为”更新文件”，你可以随时回来替换或补充材料。”
-        : “Once submitted, the button on your assessment and course pages will change to Update documents — you can come back any time to replace or add files.”,
+        ? “确认后将返回上一页。评估页和课程页的按钮会更新为”更新文件”，你可以随时回来替换或补充材料。”
+        : “After confirming, you will be returned to the previous page. You can come back any time using the Update documents button to replace or add files.”,
       cancel: zh ? "取消" : "Cancel",
       confirm: zh ? "确认提交" : "Confirm submission",
       submittedTitle: zh ? "文件已提交" : "Documents submitted",
