@@ -6,8 +6,8 @@
       id: "confirm-attendance",
       title: "Confirm assessment attendance",
       titleZh: "确认评估出席",
-      detail: "Due 30 May 2026. Required before the written examination.",
-      detailZh: "截止 2026 年 5 月 30 日。笔试前必须完成。",
+      detail: "Due 30 June 2026. Required before the written examination.",
+      detailZh: "截止 2026 年 6 月 30 日。笔试前必须完成。",
       href: "assessment.html",
       priority: "Action required"
     },
@@ -15,8 +15,8 @@
       id: "income-id-upload",
       title: "Upload income and ID documents",
       titleZh: "上传收入和身份证明文件",
-      detail: "Upload supporting documents before 30 May 2026.",
-      detailZh: "请在 2026 年 5 月 30 日前上传支持文件。",
+      detail: "Upload supporting documents before 30 June 2026.",
+      detailZh: "请在 2026 年 6 月 30 日前上传支持文件。",
       href: "submission.html",
       priority: "Documents"
     },
