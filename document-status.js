@@ -181,18 +181,12 @@
     };
   };
 
-  const markSubmitButton = () => {
-    const button = document.querySelector("[data-document-submit]") ||
-      [...document.querySelectorAll(".form-actions .btn-primary")]
-        .find((node) => /Submit documents|提交文件|Update documents|更新文件/.test(node.textContent.trim()));
-    if (button) button.dataset.documentSubmit = "";
-  };
+  window.__ipiDocSubmit = handleSubmitClick;
 
   document.addEventListener("click", (event) => {
     if (event.target.closest("[data-document-submit]")) handleSubmitClick();
   });
 
-  markSubmitButton();
   applySubmittedState();
   window.addEventListener("languagechange", applySubmittedState);
 })();

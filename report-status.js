@@ -95,13 +95,9 @@
       const text = node.textContent.replace(/\s+/g, " ").trim();
       const isReportSubmit = node.matches("[data-report-submit]") || (location.pathname.endsWith("report.html") && text === c.submit);
       const isUploadEntry = [
-        "Upload work",
-        "Submit reflection",
         "Upload application documents instead",
-        "上传作业",
-        "提交反思",
         "改为上传申请文件"
-      ].includes(text) && node.getAttribute?.("href") !== "submission.html";
+      ].includes(text);
 
       if (isReportSubmit) {
         node.textContent = submitted ? c.update : c.submit;
