@@ -22,6 +22,10 @@
     <div class="hero-note">
       <strong>Good faith reporting</strong>
       <p>Reports can be submitted with contact details or anonymously. Anonymous reports may require stronger supporting evidence before action can be taken.</p>
+      <button type="button" class="btn btn-ghost" style="margin-top:14px;font-size:12.5px;gap:7px;" data-track-report>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/><path d="M11 8v3l2 2"/></svg>
+        Track report status
+      </button>
     </div>
   </div>
 
@@ -206,6 +210,105 @@
   }
 
   clearButton?.addEventListener("click", showClearConfirm);
+
+  // ── Report status tracking ──────────────────────────────
+  function buildRefNumber(isoDate) {
+    const d = new Date(isoDate);
+    const seq = String(d.getTime()).slice(-5);
+    return `RPT-AU-${d.getFullYear()}-${seq}`;
+  }
+
+  function formatDateTime(isoDate) {
+    const d = new Date(isoDate);
+    return d.toLocaleString("en-AU", { day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit", timeZoneName: "short" });
+  }
+
+  function addDays(isoDate, days) {
+    const d = new Date(isoDate);
+    d.setDate(d.getDate() + days);
+    return d.toLocaleString("en-AU", { day: "numeric", month: "short", year: "numeric" });
+  }
+
+  function showTrackModal() {
+    let modal = document.querySelector("[data-track-modal]");
+    if (!modal) {
+      modal = document.createElement("div");
+      modal.className = "preview-modal report-modal";
+      modal.hidden = true;
+      modal.dataset.trackModal = "";
+      modal.innerHTML = `
+        <div class="preview-dialog report-dialog" role="dialog" aria-modal="true" aria-labelledby="trackModalTitle" style="max-width:440px;">
+          <button class="preview-close" type="button" aria-label="Close" data-track-close>×</button>
+          <div class="phase-num">Report</div>
+          <h2 id="trackModalTitle" style="margin-bottom:16px;">Report status</h2>
+          <div data-track-body></div>
+          <div class="report-modal-actions" style="margin-top:20px;">
+            <button class="btn btn-primary" type="button" data-track-close>Close</button>
+          </div>
+        </div>`;
+      document.body.append(modal);
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal || e.target.closest("[data-track-close]")) modal.hidden = true;
+      });
+      document.addEventListener("keydown", (e) => { if (e.key === "Escape") modal.hidden = true; });
+    }
+
+    const raw = (() => { try { return JSON.parse(localStorage.getItem("ipi-report-submission") || "null"); } catch { return null; } })();
+    const body = modal.querySelector("[data-track-body]");
+
+    if (!raw || !raw.submitted) {
+      body.innerHTML = `<p class="preview-age" style="color:var(--text-muted);">No report on file for this session. Submit a report to receive a reference number and track its progress.</p>`;
+    } else {
+      const ref = buildRefNumber(raw.updatedAt);
+      const submitted = formatDateTime(raw.updatedAt);
+      const reviewBy = addDays(raw.updatedAt, 2);
+      const outcomeBy = addDays(raw.updatedAt, 10);
+      body.innerHTML = `
+        <div class="report-ref">
+          <span>Reference number</span>
+          <strong>${ref}</strong>
+        </div>
+        <div class="status-timeline">
+          <div class="status-step">
+            <div class="step-dot done">✓</div>
+            <div class="step-content">
+              <div class="step-title">Report received</div>
+              <div class="step-meta">${submitted}</div>
+            </div>
+          </div>
+          <div class="status-step">
+            <div class="step-dot done">✓</div>
+            <div class="step-content">
+              <div class="step-title">Assigned to review team</div>
+              <div class="step-meta">IPI Compliance & Welfare Unit</div>
+            </div>
+          </div>
+          <div class="status-step">
+            <div class="step-dot active">→</div>
+            <div class="step-content">
+              <div class="step-title">Assessment in progress</div>
+              <div class="step-meta">Estimated completion by ${outcomeBy}</div>
+            </div>
+          </div>
+          <div class="status-step">
+            <div class="step-dot"></div>
+            <div class="step-content">
+              <div class="step-title">Outcome communicated</div>
+              <div class="step-meta">Written response will be sent to the contact provided</div>
+            </div>
+          </div>
+        </div>
+        <p style="font-size:12px;color:var(--text-muted);margin-top:4px;">Keep your reference number for follow-up enquiries. Contact IPI if you have not received a response by ${outcomeBy}.</p>`;
+    }
+
+    modal.hidden = false;
+  }
+
+  document.querySelector("[data-track-report]")?.addEventListener("click", showTrackModal);
+  window.addEventListener("reportstatuschange", () => {
+    const modal = document.querySelector("[data-track-modal]");
+    if (modal && !modal.hidden) showTrackModal();
+  });
 </script>
 </body>
 </html>
