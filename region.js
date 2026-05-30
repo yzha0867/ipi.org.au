@@ -393,7 +393,20 @@
       language: "English",
       languageZh: "英语",
       documents: "Australian ID, income evidence, and centre attendance confirmation",
-      documentsZh: "澳洲身份证明、收入证明和中心出席确认"
+      documentsZh: "澳洲身份证明、收入证明和中心出席确认",
+      centreCity: "Sydney",
+      centreRoom: "Room 4A",
+      timezoneLabel: "Sydney time",
+      branchAddress: "IPI Australia<br>Russell Street<br>Russell ACT 2600<br>Australia",
+      phoneLabel: "Phone · Australia",
+      phoneHref: "tel:+61261208974",
+      phoneDisplay: "(02) 6120 8974",
+      hours: "Mon - Fri · 09:00 - 17:00 AEST",
+      emailLabel: "Australia",
+      email: "enquiries@ipi.org.au",
+      reportPrefix: "AU",
+      locale: "en-AU",
+      emergency: "000"
     },
     CN: {
       summary: "Uses the same IPI phase logic with China regional examples, identity guidance, and document upload requirements adapted for local applicants.",
@@ -401,7 +414,20 @@
       language: "Mandarin Chinese with English reference terms",
       languageZh: "中文普通话，保留英文术语对照",
       documents: "National ID or passport, income evidence, and translated supporting documents where required",
-      documentsZh: "居民身份证或护照、收入证明，以及必要时的翻译支持材料"
+      documentsZh: "居民身份证或护照、收入证明，以及必要时的翻译支持材料",
+      centreCity: "Beijing",
+      centreRoom: "Room 4A",
+      timezoneLabel: "Beijing time",
+      branchAddress: "IPI China Regional Office<br>Beijing Service Centre<br>China",
+      phoneLabel: "Phone · China",
+      phoneHref: "tel:+861080008974",
+      phoneDisplay: "010 8000 8974",
+      hours: "Mon - Fri · 09:00 - 17:00 CST",
+      emailLabel: "China",
+      email: "enquiries@ipi.org.cn",
+      reportPrefix: "CN",
+      locale: "zh-CN",
+      emergency: "110 or 120"
     },
     US: {
       summary: "Adapted for United States centre scheduling, caregiver documentation, and state-level family support terminology.",
@@ -409,7 +435,20 @@
       language: "English",
       languageZh: "英语",
       documents: "Government ID, household income evidence, and local centre confirmation",
-      documentsZh: "政府身份证明、家庭收入证明和本地中心确认"
+      documentsZh: "政府身份证明、家庭收入证明和本地中心确认",
+      centreCity: "New York",
+      centreRoom: "Room 4A",
+      timezoneLabel: "New York time",
+      branchAddress: "IPI United States Regional Office<br>New York, NY<br>United States",
+      phoneLabel: "Phone · United States",
+      phoneHref: "tel:+12125558974",
+      phoneDisplay: "(212) 555-8974",
+      hours: "Mon - Fri · 09:00 - 17:00 ET",
+      emailLabel: "United States",
+      email: "enquiries@ipi.org.us",
+      reportPrefix: "US",
+      locale: "en-US",
+      emergency: "911"
     },
     GB: {
       summary: "Adapted for United Kingdom family service wording, identity checks, and regional assessment scheduling.",
@@ -417,7 +456,20 @@
       language: "English",
       languageZh: "英语",
       documents: "Photo ID, income evidence, and assessment attendance confirmation",
-      documentsZh: "照片身份证明、收入证明和评估出席确认"
+      documentsZh: "照片身份证明、收入证明和评估出席确认",
+      centreCity: "London",
+      centreRoom: "Room 4A",
+      timezoneLabel: "London time",
+      branchAddress: "IPI United Kingdom Regional Office<br>London<br>United Kingdom",
+      phoneLabel: "Phone · United Kingdom",
+      phoneHref: "tel:+442079468974",
+      phoneDisplay: "020 7946 8974",
+      hours: "Mon - Fri · 09:00 - 17:00 GMT/BST",
+      emailLabel: "United Kingdom",
+      email: "enquiries@ipi.org.uk",
+      reportPrefix: "GB",
+      locale: "en-GB",
+      emergency: "999"
     },
     SG: {
       summary: "Adapted for Singapore centre delivery, bilingual family guidance, and local supporting-document expectations.",
@@ -425,7 +477,20 @@
       language: "English with Mandarin support",
       languageZh: "英语，提供中文支持",
       documents: "NRIC or passport, income evidence, and centre attendance record",
-      documentsZh: "NRIC 或护照、收入证明和中心出席记录"
+      documentsZh: "NRIC 或护照、收入证明和中心出席记录",
+      centreCity: "Singapore",
+      centreRoom: "Room 4A",
+      timezoneLabel: "Singapore time",
+      branchAddress: "IPI Singapore Regional Office<br>Singapore Family Service Centre<br>Singapore",
+      phoneLabel: "Phone · Singapore",
+      phoneHref: "tel:+6561208974",
+      phoneDisplay: "6120 8974",
+      hours: "Mon - Fri · 09:00 - 17:00 SGT",
+      emailLabel: "Singapore",
+      email: "enquiries@ipi.org.sg",
+      reportPrefix: "SG",
+      locale: "en-SG",
+      emergency: "995"
     }
   };
 
@@ -586,7 +651,39 @@
     language: "English with local-language support where available",
     languageZh: "英语，按地区提供本地语言支持",
     documents: "Government ID, income evidence, and region-specific supporting documents",
-    documentsZh: "政府身份证明、收入证明和地区所需支持材料"
+    documentsZh: "政府身份证明、收入证明和地区所需支持材料",
+    centreCity: getRegionName(regionCode),
+    centreRoom: "Room 4A",
+    timezoneLabel: `${getRegionName(regionCode)} local time`,
+    branchAddress: `IPI ${getRegionName(regionCode)} Regional Office<br>Local service centre<br>${getRegionName(regionCode)}`,
+    phoneLabel: `Phone · ${getRegionName(regionCode)}`,
+    phoneHref: "tel:+0000000000",
+    phoneDisplay: "Contact local IPI office",
+    hours: "Mon - Fri · local business hours",
+    emailLabel: getRegionName(regionCode),
+    email: "enquiries@ipi.int",
+    reportPrefix: regionCode || "INT",
+    locale: "en",
+    emergency: "local emergency services"
+  };
+
+  const getRegionalContent = (regionCode = activeRegion) => {
+    const regionName = getRegionName(regionCode);
+    const profile = getRegionalProfile(regionCode);
+    const centre = `IPI Centre ${profile.centreCity || regionName}`;
+    return {
+      ...profile,
+      region: regionCode,
+      regionName,
+      branchName: `IPI ${regionName}`,
+      centre,
+      location: `${centre} · ${profile.centreRoom || "Room 4A"}`,
+      footerMeta: `© 2026 International Parenting Institute. ${regionName}.`,
+      idDocumentHelp: `Accepted: passport, driver licence, national ID, or approved ${regionName} equivalent.`,
+      incomeDocumentHelp: `Accepted: PDF, PNG, JPG. Example: payslip, tax notice, benefit statement, or ${regionName} income evidence.`,
+      submissionNotice: `This demonstration stores no personal documents. In a live IPI ${regionName} system, files would be encrypted and sent to the assessment records unit.`,
+      reportAlert: `If anyone is in immediate danger, contact ${profile.emergency || "local emergency services"} first. This form is for IPI ${regionName} review and licence compliance follow-up.`
+    };
   };
 
   const applyRegionalCourseDisplay = () => {
@@ -612,6 +709,79 @@
     });
     document.querySelectorAll("[data-regional-course-docs]").forEach((docs) => {
       docs.textContent = t.documentsText(profile);
+    });
+  };
+
+  const setText = (selector, value) => {
+    document.querySelectorAll(selector).forEach((node) => {
+      node.textContent = value;
+    });
+  };
+
+  const setHtml = (selector, value) => {
+    document.querySelectorAll(selector).forEach((node) => {
+      node.innerHTML = value;
+    });
+  };
+
+  const setHref = (selector, value) => {
+    document.querySelectorAll(selector).forEach((node) => {
+      node.setAttribute("href", value);
+    });
+  };
+
+  const applyRegionalPageContent = () => {
+    const content = getRegionalContent(activeRegion);
+    const examDate = window.IPITime?.formatLong ? window.IPITime.formatLong(new Date(2026, 5, 30)) : "Tuesday, 30 June 2026";
+    const deadline = window.IPITime?.formatShort ? window.IPITime.formatShort(new Date(2026, 5, 27)) : "27 June 2026";
+    const deadlineDayMonth = window.IPITime?.formatDayMonth ? window.IPITime.formatDayMonth(new Date(2026, 5, 27)) : "27 June";
+
+    document.querySelectorAll(".un-badge").forEach((badge) => {
+      const dot = badge.querySelector("span");
+      badge.textContent = "";
+      if (dot) badge.append(dot, document.createTextNode(` ${content.branchName}`));
+      else badge.textContent = content.branchName;
+    });
+
+    setText(".footer-meta span:first-child", content.footerMeta);
+    setText("[data-region-content='centre']", content.centre);
+    setText("[data-region-content='centre-location']", content.location);
+    setText("[data-region-content='timezone']", content.timezoneLabel);
+    setText("[data-region-content='branch-name']", content.branchName);
+    setText("[data-region-content='phone-label']", content.phoneLabel);
+    setText("[data-region-content='phone-display']", content.phoneDisplay);
+    setText("[data-region-content='hours']", content.hours);
+    setText("[data-region-content='email-label']", content.emailLabel);
+    setText("[data-region-content='email-display']", content.email);
+    setText("[data-region-content='id-document-help']", content.idDocumentHelp);
+    setText("[data-region-content='income-document-help']", content.incomeDocumentHelp);
+    setText("[data-region-content='submission-notice']", content.submissionNotice);
+    setText("[data-region-content='report-alert']", content.reportAlert);
+    setHtml("[data-region-content='branch-address']", content.branchAddress);
+    setHref("[data-region-content='phone-link']", content.phoneHref);
+    setHref("[data-region-content='email-link']", `mailto:${content.email}`);
+
+    document.querySelectorAll(".alert-content").forEach((node) => {
+      node.innerHTML = `<strong>Action required.</strong> Your Toddlerhood written examination is scheduled for <strong>${examDate} · 10:00 AM</strong> at ${content.centre}. Confirm your attendance by ${deadlineDayMonth}. <a href="assessment.html">Confirm now</a>`;
+    });
+    document.querySelectorAll(".hero-note p").forEach((node) => {
+      if (/All files must be submitted/.test(node.textContent)) {
+        node.textContent = `All files must be submitted by ${deadline}, 10:00 AM ${content.timezoneLabel}.`;
+      }
+    });
+    document.querySelectorAll(".assessment-row .type, .course-stats span").forEach((node) => {
+      if (node.querySelector?.("[data-region-content]")) return;
+      node.textContent = node.textContent.replace(/Centre Sydney/g, content.centre);
+      node.textContent = node.textContent.replace(/In-person · Sydney/g, `In-person · ${content.centre}`);
+    });
+    document.querySelectorAll(".cover-field").forEach((field) => {
+      const label = field.querySelector("span");
+      if (label?.textContent.trim() !== "Location") return;
+      if (field.querySelector("[data-region-content='centre-location']")) return;
+      [...field.childNodes].forEach((node) => {
+        if (node.nodeType === Node.TEXT_NODE) node.remove();
+      });
+      field.append(content.location);
     });
   };
 
@@ -653,6 +823,7 @@
     applyPageTranslations();
     updateLanguageOptions();
     applyRegionalCourseDisplay();
+    applyRegionalPageContent();
     window.dispatchEvent(new Event("languagechange"));
   };
 
@@ -666,8 +837,13 @@
 
     updateOptions();
     applyRegionalCourseDisplay();
+    applyRegionalPageContent();
+    window.IPIRegion = {
+      getActiveRegion: () => activeRegion,
+      getRegionalContent: () => getRegionalContent(activeRegion)
+    };
     window.dispatchEvent(new CustomEvent("regionchange", {
-      detail: { region: activeRegion, regionName: getRegionName(activeRegion) }
+      detail: { region: activeRegion, regionName: getRegionName(activeRegion), content: getRegionalContent(activeRegion) }
     }));
   };
 
@@ -845,6 +1021,8 @@
       selector.querySelector("[data-language-toggle]")?.setAttribute("aria-expanded", "false");
     });
   });
+
+  window.addEventListener("ipitimechange", applyRegionalPageContent);
 
   applyRegion(activeRegion);
   applyLanguage(activeLanguage);

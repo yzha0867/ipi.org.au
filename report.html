@@ -97,7 +97,7 @@
 
       <div class="report-section">
         <h2>Declaration</h2>
-        <div class="report-alert">If anyone is in immediate danger, contact local emergency services first. This form is for IPI review and licence compliance follow-up.</div>
+        <div class="report-alert" data-region-content="report-alert">If anyone is in immediate danger, contact local emergency services first. This form is for IPI review and licence compliance follow-up.</div>
         <label class="check-row"><input type="checkbox">I confirm this report is submitted in good faith and to the best of my knowledge is accurate.</label>
         <label class="check-row"><input type="checkbox">Submit anonymously. I understand anonymous reports may be subject to a higher evidential threshold.</label>
       </div>
@@ -117,7 +117,7 @@
       </div>
     </div><div><h5>Learn</h5><a href="courses.html">All courses</a><a href="assessment.html">Assessment schedule</a><a href="submission.html">Application documents</a></div><div><h5>Support</h5><a href="report.html">Report a concern</a><a href="about.html">Accessibility</a><a href="about.html">Help centre</a></div><div><h5>About</h5><a href="about.html">Our mission</a><a href="about.html">Member states</a><a href="about.html">Reports & research</a></div></div><div class="footer-meta"><span>© 2026 International Parenting Institute.</span><span>Privacy · Terms · Cookies</span></div></footer>
 <script src="dynamic-time.js?v=2"></script>
-<script src="region.js?v=2"></script>
+<script src="region.js?v=3"></script>
 <script src="profile.js?v=2"></script>
 <script src="search.js?v=2"></script>
 <script src="notifications.js?v=3"></script>
@@ -213,21 +213,34 @@
   clearButton?.addEventListener("click", showClearConfirm);
 
   // ── Report status tracking ──────────────────────────────
+  function activeRegionContent() {
+    return window.IPIRegion?.getRegionalContent?.() || {
+      reportPrefix: "AU",
+      locale: "en-AU",
+      phoneHref: "tel:+61261208974",
+      phoneDisplay: "(02) 6120 8974",
+      email: "enquiries@ipi.org.au"
+    };
+  }
+
   function buildRefNumber(isoDate) {
+    const region = activeRegionContent();
     const d = new Date(isoDate);
     const seq = String(d.getTime()).slice(-5);
-    return `RPT-AU-${d.getFullYear()}-${seq}`;
+    return `RPT-${region.reportPrefix || "INT"}-${d.getFullYear()}-${seq}`;
   }
 
   function formatDateTime(isoDate) {
+    const region = activeRegionContent();
     const d = new Date(isoDate);
-    return d.toLocaleString("en-AU", { day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit", timeZoneName: "short" });
+    return d.toLocaleString(region.locale || "en", { day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit", timeZoneName: "short" });
   }
 
   function addDays(isoDate, days) {
+    const region = activeRegionContent();
     const d = new Date(isoDate);
     d.setDate(d.getDate() + days);
-    return d.toLocaleString("en-AU", { day: "numeric", month: "short", year: "numeric" });
+    return d.toLocaleString(region.locale || "en", { day: "numeric", month: "short", year: "numeric" });
   }
 
   function showTrackModal() {
@@ -266,6 +279,7 @@
           <p>No report on file for this session. Submit a report to receive a reference number and track its progress here.</p>
         </div>`;
     } else {
+      const region = activeRegionContent();
       const ref = buildRefNumber(raw.updatedAt);
       const submitted = formatDateTime(raw.updatedAt);
       const outcomeBy = addDays(raw.updatedAt, 10);
@@ -313,7 +327,7 @@
             </div>
           </div>
         </div>
-        <div class="track-note">Keep your reference number for follow-up enquiries. If you have not received a response by <strong>${outcomeBy}</strong>, contact IPI on <a href="tel:+61261208974" style="color:var(--primary);font-weight:700;">(02) 6120 8974</a> or <a href="mailto:enquiries@ipi.org.au" style="color:var(--primary);font-weight:700;">enquiries@ipi.org.au</a>.</div>`;
+        <div class="track-note">Keep your reference number for follow-up enquiries. If you have not received a response by <strong>${outcomeBy}</strong>, contact IPI on <a href="${region.phoneHref}" style="color:var(--primary);font-weight:700;">${region.phoneDisplay}</a> or <a href="mailto:${region.email}" style="color:var(--primary);font-weight:700;">${region.email}</a>.</div>`;
     }
 
     modal.hidden = false;
