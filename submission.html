@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Online Submission Form — IPI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="un-strip"><div class="un-strip-inner"><div class="left"><a href="index.html" class="logo strip-logo" style="text-decoration:none;"><div class="logo-mark"><img src="ipi_logo.png" alt="IPI"></div><div class="logo-text">International Parenting Institute<small>UN Affiliated · Geneva</small></div></a></div><div class="right"><div class="nav-actions"><div class="region-selector" data-region-selector><button class="region-button" type="button" aria-haspopup="true" aria-expanded="false" data-region-toggle><span class="region-copy"><span class="region-kicker">Country / Region</span><strong data-region-label>Australia</strong></span></button><div class="region-menu" role="menu" data-region-menu></div></div><div class="language-selector" data-language-selector><button class="language-button" type="button" aria-haspopup="true" aria-expanded="false" data-language-toggle><span class="language-copy"><span class="language-kicker">Language</span><strong data-language-label>English</strong></span></button><div class="language-menu" role="menu" data-language-menu></div></div><div class="notification-selector" data-notification-selector><button class="icon-btn notification-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Open reminders" data-notification-toggle><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><span class="badge" data-notification-badge></span></button><div class="notification-menu" data-notification-menu></div></div><div class="profile-selector" data-profile-selector><button class="avatar" type="button" aria-haspopup="true" aria-expanded="false" data-profile-toggle>JD</button><div class="profile-menu" data-profile-menu></div></div></div></div></div></div>
+<nav class="nav"><div class="nav-inner"><div class="nav-links"><a href="index.html" data-nav-label="myLearning">My Learning</a><a href="courses.html" data-nav-label="courses">Courses</a><a href="assessment.html" data-nav-label="assessments">Assessments</a><a href="report.html" data-nav-label="report">Report</a><a href="about.html" data-nav-label="about">About IPI</a></div><form class="strip-search" data-site-search role="search" autocomplete="off"><button class="search-scope" type="button">All</button><input class="search-input" type="search" aria-label="Search courses, modules, documents" placeholder="Search courses, modules, documents..."><button class="search-submit" type="submit" aria-label="Search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></button><div class="search-results" data-search-results aria-live="polite"></div></form></div></nav>
+<div class="main">
+  <div class="page-hero"><div><h1>Online submission form</h1><p class="sub">Upload required evidence for the Toddlerhood application: income document, identity document, and home observation notes. This static form is ready to open and demonstrate in a browser.</p></div><div class="hero-note"><strong>Deadline</strong><p>All files must be submitted by 30 May 2026, 6:00 PM Sydney time.</p></div></div>
+
+  <div class="submission-card">
+    <form>
+      <div class="form-grid">
+        <label>Applicant name<input value="Jane Doe" aria-label="Applicant name"></label>
+        <label>Application number<input value="IPI-PA-2026-001256" aria-label="Application number"></label>
+        <label>Course phase<select><option>Development Phase 2 — Toddlerhood</option><option>Development Phase 1 — Infancy</option><option>Development Phase 3 — Early Childhood</option></select></label>
+        <label>Assessment date<input value="30 May 2026" aria-label="Assessment date"></label>
+        <div class="upload-box full"><label>Upload income document<input type="file" accept=".pdf,.png,.jpg,.jpeg"></label><span class="meta">Accepted: PDF, PNG, JPG. Example: payslip, tax notice, benefit statement.</span></div>
+        <div class="upload-box full"><label>Upload ID document<input type="file" accept=".pdf,.png,.jpg,.jpeg"></label><span class="meta">Accepted: passport, driver licence, national ID, or approved equivalent.</span></div>
+        <div class="upload-box full"><label>Upload home observation or reflection<input type="file" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg"></label><span class="meta">Attach Lab 3 reflection or signed co-applicant declaration.</span></div>
+        <label class="full">Notes for reviewer<textarea placeholder="Add any context for the IPI review officer..."></textarea></label>
+      </div>
+      <p class="notice" style="margin-top:18px;">This demonstration stores no personal documents. In a live IPI system, files would be encrypted and sent to the assessment records unit.</p>
+      <div class="form-actions"><button type="button" class="btn btn-primary">Submit documents</button><a href="assessment.html" class="btn btn-ghost">Back to schedule</a></div>
+    </form>
+  </div>
+</div>
+<script src="dynamic-time.js"></script>
+<script src="region.js"></script>
+<script src="profile.js"></script>
+<script src="search.js"></script>
+<script src="notifications.js"></script>
+<script src="report-status.js"></script>
+<script src="document-status.js"></script>
+</body>
+</html>

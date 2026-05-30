@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Course Resume — IPI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="un-strip"><div class="un-strip-inner"><div class="left"><a href="index.html" class="logo strip-logo" style="text-decoration:none;"><div class="logo-mark"><img src="ipi_logo.png" alt="IPI"></div><div class="logo-text">International Parenting Institute<small>UN Affiliated · Geneva</small></div></a></div><div class="right"><div class="nav-actions"><div class="region-selector" data-region-selector><button class="region-button" type="button" aria-haspopup="true" aria-expanded="false" data-region-toggle><span class="region-copy"><span class="region-kicker">Country / Region</span><strong data-region-label>Australia</strong></span></button><div class="region-menu" role="menu" data-region-menu></div></div><div class="language-selector" data-language-selector><button class="language-button" type="button" aria-haspopup="true" aria-expanded="false" data-language-toggle><span class="language-copy"><span class="language-kicker">Language</span><strong data-language-label>English</strong></span></button><div class="language-menu" role="menu" data-language-menu></div></div><div class="notification-selector" data-notification-selector><button class="icon-btn notification-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Open reminders" data-notification-toggle><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><span class="badge" data-notification-badge></span></button><div class="notification-menu" data-notification-menu></div></div><div class="profile-selector" data-profile-selector><button class="avatar" type="button" aria-haspopup="true" aria-expanded="false" data-profile-toggle>JD</button><div class="profile-menu" data-profile-menu></div></div></div></div></div></div>
+<nav class="nav"><div class="nav-inner"><div class="nav-links"><a href="index.html" data-nav-label="myLearning">My Learning</a><a href="courses.html" data-nav-label="courses" class="active">Courses</a><a href="assessment.html" data-nav-label="assessments">Assessments</a><a href="report.html" data-nav-label="report">Report</a><a href="about.html" data-nav-label="about">About IPI</a></div><form class="strip-search" data-site-search role="search" autocomplete="off"><button class="search-scope" type="button">All</button><input class="search-input" type="search" aria-label="Search courses, modules, documents" placeholder="Search courses, modules, documents..."><button class="search-submit" type="submit" aria-label="Search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></button><div class="search-results" data-search-results aria-live="polite"></div></form></div></nav>
+<div class="main">
+  <section class="course-cover">
+    <div class="course-meta"><span class="course-tag">Resume mode</span><span class="course-tag tier-2">Toddlerhood · In progress</span><span class="course-code" id="resume-code">IPI-TD-101</span></div>
+    <h1 id="resume-title">Foundations of Toddler Development (12-36 months)</h1>
+    <p id="resume-summary">Continue the active Toddlerhood course from the next scheduled module.</p>
+    <div class="course-progress-wrap"><div class="course-progress"><div class="fill" id="resume-fill" style="width:75%"></div></div><div class="course-progress-label" id="resume-progress">75% complete · Module 6 of 8</div></div>
+  </section>
+
+  <div class="detail-grid">
+    <main>
+      <section class="panel">
+        <div class="section-head"><h2 id="resume-section-title">Next lesson</h2><div class="meta" id="resume-meta">Estimated 20 minutes</div></div>
+        <div class="module-list" id="resume-modules"></div>
+      </section>
+    </main>
+    <aside>
+      <div class="card application-card"><div class="card-title">Course action</div><p id="resume-status">Current Toddlerhood phase<br>Progress saved automatically</p><a class="btn btn-primary" href="courses.html#toddlerhood-curriculum">Back to courses</a></div>
+      <div class="card"><div class="card-title">Assessment link</div><p class="sub" style="font-size:14px;">Written examination<br>30 May 2026 · 10:00 AM</p><a class="btn btn-accent" href="assessment.html" style="margin-top:22px;">Open schedule</a></div>
+    </aside>
+  </div>
+</div>
+
+<script src="dynamic-time.js"></script>
+<script src="region.js"></script>
+<script src="profile.js"></script>
+<script src="search.js"></script>
+<script src="notifications.js"></script>
+<script src="report-status.js"></script>
+<script src="document-status.js"></script>
+<script>
+const resumeCourses = {
+  "IPI-TD-101": {
+    title: "Foundations of Toddler Development (12-36 months)",
+    summary: "Continue with language milestones and developmental observation for the active Toddlerhood assessment path.",
+    progress: "75% complete · Module 6 of 8",
+    width: "75%",
+    next: "Module 6 — Language Milestones at 18-24 Months",
+    modules: ["Milestone recap", "Expressive and receptive language", "Observation activity", "Knowledge check"]
+  },
+  "IPI-TD-301": {
+    title: "Responding to Tantrums & Big Emotions",
+    summary: "Continue behaviour support content focused on recognising triggers and responding calmly.",
+    progress: "18% complete · Module 2 of 12",
+    width: "18%",
+    next: "Module 2 — Recognising Triggers & Overstimulation",
+    modules: ["Trigger mapping", "Overstimulation signs", "Co-regulation script", "Reflection prompt"]
+  },
+  "IPI-TD-110": {
+    title: "Co-Parenting Through the Toddler Years",
+    summary: "Continue the joint workshop pathway with co-applicant M. Chen.",
+    progress: "50% complete · Session 3 of 5",
+    width: "50%",
+    next: "Workshop 3 — Aligning on Discipline & Boundaries",
+    modules: ["Shared boundaries", "Discipline language", "Conflict repair", "Joint planning note"]
+  }
+};
+const params = new URLSearchParams(location.search);
+const code = params.get("course") || "IPI-TD-101";
+const course = resumeCourses[code] || resumeCourses["IPI-TD-101"];
+document.getElementById("resume-code").textContent = code;
+document.getElementById("resume-title").textContent = course.title;
+document.getElementById("resume-summary").textContent = course.summary;
+document.getElementById("resume-progress").textContent = course.progress;
+document.getElementById("resume-fill").style.width = course.width;
+document.getElementById("resume-section-title").textContent = course.next;
+document.getElementById("resume-modules").innerHTML = course.modules.map((module, index) => `<div class="module-row"><div class="num">${index + 1}</div><div><strong>${module}</strong><span>${index === 0 ? "Ready to resume" : "Upcoming in this lesson"}</span></div><a class="btn ${index === 0 ? "btn-primary" : "btn-ghost"}" href="#">${index === 0 ? "Start" : "Preview"}</a></div>`).join("");
+</script>
+</body>
+</html>
