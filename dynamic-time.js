@@ -136,6 +136,7 @@
     const shortDate = formatShort(EXAM_DATE);
     const dayMonth = formatDayMonth(EXAM_DATE);
     const docShortDate = formatShort(DOC_DEADLINE);
+    const docDayMonth = formatDayMonth(DOC_DEADLINE);
     const docZhShort = formatZhShort(DOC_DEADLINE);
 
     document.querySelectorAll(".greeting-text .sub").forEach((node) => {
@@ -147,13 +148,13 @@
     });
 
     document.querySelectorAll(".alert-content").forEach((node) => {
-      node.innerHTML = `<strong>Action required.</strong> Your Toddlerhood written examination is scheduled for <strong>${longDate} · 10:00 AM</strong> at IPI Centre Sydney. Confirm your attendance by ${dayMonth}. <a href="assessment.html">Confirm now</a>`;
+      node.innerHTML = `<strong>Action required.</strong> Your Toddlerhood written examination is scheduled for <strong>${longDate} · 10:00 AM</strong> at IPI Centre Sydney. Confirm your attendance by ${docDayMonth}. <a href="assessment.html">Confirm now</a>`;
     });
 
     document.querySelectorAll(".hero-note p").forEach((node) => {
       const text = node.textContent;
       if (/Confirm attendance|upload supporting documents/.test(text)) {
-        node.textContent = `Confirm attendance by ${shortDate} and upload supporting documents before ${docShortDate}.`;
+        node.textContent = `Confirm attendance and upload supporting documents by ${docShortDate}.`;
       }
       if (/All files must be submitted/.test(text)) {
         node.textContent = `All files must be submitted by ${docShortDate}, 10:00 AM Sydney time.`;
@@ -166,7 +167,7 @@
       node.textContent = shortDate;
     });
     document.querySelectorAll(".goal-text").forEach((node) => {
-      if (/Confirm attendance by/.test(node.textContent)) node.textContent = `Confirm attendance by ${dayMonth}`;
+      if (/Confirm attendance by/.test(node.textContent)) node.textContent = `Confirm attendance by ${docDayMonth}`;
     });
     document.querySelectorAll('input[aria-label="Assessment date"]').forEach((input) => {
       input.value = shortDate;
@@ -174,7 +175,7 @@
 
     updateCalendar(date);
     window.dispatchEvent(new CustomEvent("ipitimechange", {
-      detail: { date, shortDate, dayMonth, longDate, zhShort: formatZhShort(EXAM_DATE), zhLong: formatZhLong(EXAM_DATE), docShortDate, docZhShort }
+      detail: { date, shortDate, dayMonth, longDate, zhShort: formatZhShort(EXAM_DATE), zhLong: formatZhLong(EXAM_DATE), docShortDate, docDayMonth, docZhShort }
     }));
   };
 

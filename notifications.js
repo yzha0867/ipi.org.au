@@ -6,8 +6,8 @@
       id: "confirm-attendance",
       title: "Confirm assessment attendance",
       titleZh: "确认评估出席",
-      detail: "Due 30 June 2026. Required before the written examination.",
-      detailZh: "截止 2026 年 6 月 30 日。笔试前必须完成。",
+      detail: "Due 27 June 2026. Required before the written examination.",
+      detailZh: "截止 2026 年 6 月 27 日。笔试前必须完成。",
       href: "assessment.html",
       priority: "Action required"
     },
@@ -70,8 +70,8 @@
     if (!timeLabels) return zh ? task.detailZh : task.detail;
     if (task.id === "confirm-attendance") {
       return zh
-        ? `截止 ${timeLabels.zhShort}。笔试前必须完成。`
-        : `Due ${timeLabels.shortDate}. Required before the written examination.`;
+        ? `截止 ${timeLabels.docZhShort}。笔试前必须完成。`
+        : `Due ${timeLabels.docShortDate}. Required before the written examination.`;
     }
     if (task.id === "income-id-upload") {
       return zh
