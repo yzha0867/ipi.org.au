@@ -28,11 +28,11 @@
         : "Once submitted, IPI's Compliance & Welfare team will review your report. You can return to this page at any time to add or update information.",
       cancel: zh ? "取消" : "Cancel",
       confirm: zh ? "确认提交" : "Confirm submission",
-      submittedTitle: zh ? “感谢您的报告” : “Thank you for your report”,
+      submittedTitle: zh ? "感谢您的报告" : "Thank you for your report",
       submittedBody: zh
-        ? “IPI 已收到您的报告，我们的合规与福利团队将会跟进处理。如需了解进度，请在举报页面点击”查看报告状态”，并保留您的参考编号。”
-        : “Your report has been received by IPI. Our Compliance & Welfare team will follow up in due course. To check progress, use the Track report status button on the report page and keep your reference number.”,
-      close: zh ? “完成” : “Done”,
+        ? 'IPI 已收到您的报告，我们的合规与福利团队将会跟进处理。如需了解进度，请在举报页面点击"查看报告状态"，并保留您的参考编号。'
+        : "Your report has been received by IPI. Our Compliance & Welfare team will follow up in due course. To check progress, use the Track report status button on the report page and keep your reference number.",
+      close: zh ? "完成" : "Done",
       submit: zh ? "提交报告" : "Submit report",
       update: zh ? "更新内容" : "Update content",
       status: zh ? "已提交。你可以继续修改表格内容，并再次点击更新内容。" : "Submitted. You can keep editing the form and use Update content again.",

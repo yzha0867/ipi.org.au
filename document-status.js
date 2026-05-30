@@ -25,14 +25,14 @@
       kicker: zh ? "文件" : "Documents",
       confirmTitle: zh ? "确认提交文件？" : "Submit these documents?",
       confirmBody: zh
-        ? “确认后将返回上一页。评估页和课程页的按钮会更新为”更新文件”，你可以随时回来替换或补充材料。”
-        : “After confirming, you will be returned to the previous page. You can come back any time using the Update documents button to replace or add files.”,
+        ? '确认后将返回上一页。评估页和课程页的按钮会更新为"更新文件"，你可以随时回来替换或补充材料。'
+        : "After confirming, you will be returned to the previous page. You can come back any time using the Update documents button to replace or add files.",
       cancel: zh ? "取消" : "Cancel",
       confirm: zh ? "确认提交" : "Confirm submission",
       submittedTitle: zh ? "文件已提交" : "Documents submitted",
       submittedBody: zh
-        ? “你的文件已提交成功。点击完成将返回上一页，日后可随时通过”更新文件”按钮补充或替换材料。”
-        : “Your documents have been received. Click Done to go back — you can update your files any time using the Update documents button.”,
+        ? '你的文件已提交成功。点击完成将返回上一页，日后可随时通过"更新文件"按钮补充或替换材料。'
+        : "Your documents have been received. Click Done to go back — you can update your files any time using the Update documents button.",
       close: zh ? "完成并返回" : "Done and return",
       submit: zh ? "提交文件" : "Submit documents",
       update: zh ? "更新文件" : "Update documents",
@@ -181,11 +181,12 @@
     };
   };
 
-  window.__ipiDocSubmit = handleSubmitClick;
-
   document.addEventListener("click", (event) => {
-    if (event.target.closest("[data-document-submit]")) handleSubmitClick();
-  });
+    if (event.target instanceof Element && event.target.closest("[data-document-submit]")) {
+      event.stopPropagation();
+      handleSubmitClick();
+    }
+  }, true);
 
   applySubmittedState();
   window.addEventListener("languagechange", applySubmittedState);
