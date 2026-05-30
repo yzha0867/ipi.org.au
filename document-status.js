@@ -155,40 +155,44 @@
     }
   };
 
-  const attachSubmitHandler = () => {
-    const button = document.querySelector("[data-document-submit]") || [...document.querySelectorAll(".form-actions .btn-primary")]
-      .find((node) => /Submit documents|提交文件|Update documents|更新文件/.test(node.textContent.trim()));
-    if (!button) return;
-    button.dataset.documentSubmit = "";
+  const handleSubmitClick = () => {
+    const modal = ensureModal();
+    const c = copy();
+    modal.dataset.documentSuccess = "false";
+    modal.querySelector("[data-document-modal-kicker]").textContent = c.kicker;
+    modal.querySelector("[data-document-modal-title]").textContent = c.confirmTitle;
+    modal.querySelector("[data-document-modal-body]").textContent = c.confirmBody;
+    modal.querySelector("[data-document-cancel]").hidden = false;
+    modal.querySelector("[data-document-cancel]").textContent = c.cancel;
+    modal.querySelector("[data-document-confirm]").textContent = c.confirm;
+    modal.hidden = false;
 
-    button.addEventListener("click", () => {
-      const modal = ensureModal();
-      const c = copy();
-      modal.dataset.documentSuccess = "false";
-      modal.querySelector("[data-document-modal-kicker]").textContent = c.kicker;
-      modal.querySelector("[data-document-modal-title]").textContent = c.confirmTitle;
-      modal.querySelector("[data-document-modal-body]").textContent = c.confirmBody;
-      modal.querySelector("[data-document-cancel]").hidden = false;
-      modal.querySelector("[data-document-cancel]").textContent = c.cancel;
-      modal.querySelector("[data-document-confirm]").textContent = c.confirm;
-      modal.hidden = false;
-
-      const confirm = modal.querySelector("[data-document-confirm]");
-      confirm.onclick = () => {
-        writeSubmission();
-        applySubmittedState();
-        window.dispatchEvent(new Event("documentsubmissionchange"));
-        modal.dataset.documentSuccess = "true";
-        modal.querySelector("[data-document-modal-title]").textContent = c.submittedTitle;
-        modal.querySelector("[data-document-modal-body]").textContent = c.submittedBody;
-        modal.querySelector("[data-document-cancel]").hidden = true;
-        confirm.textContent = c.close;
-        confirm.onclick = returnToPreviousPage;
-      };
-    });
+    const confirm = modal.querySelector("[data-document-confirm]");
+    confirm.onclick = () => {
+      writeSubmission();
+      applySubmittedState();
+      window.dispatchEvent(new Event("documentsubmissionchange"));
+      modal.dataset.documentSuccess = "true";
+      modal.querySelector("[data-document-modal-title]").textContent = c.submittedTitle;
+      modal.querySelector("[data-document-modal-body]").textContent = c.submittedBody;
+      modal.querySelector("[data-document-cancel]").hidden = true;
+      confirm.textContent = c.close;
+      confirm.onclick = returnToPreviousPage;
+    };
   };
 
-  attachSubmitHandler();
+  const markSubmitButton = () => {
+    const button = document.querySelector("[data-document-submit]") ||
+      [...document.querySelectorAll(".form-actions .btn-primary")]
+        .find((node) => /Submit documents|提交文件|Update documents|更新文件/.test(node.textContent.trim()));
+    if (button) button.dataset.documentSubmit = "";
+  };
+
+  document.addEventListener("click", (event) => {
+    if (event.target.closest("[data-document-submit]")) handleSubmitClick();
+  });
+
+  markSubmitButton();
   applySubmittedState();
   window.addEventListener("languagechange", applySubmittedState);
 })();

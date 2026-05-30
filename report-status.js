@@ -24,15 +24,15 @@
     return {
       confirmTitle: zh ? "确认提交报告？" : "Submit this report?",
       confirmBody: zh
-        ? "提交后，报告状态会同步到课程、评估和提醒入口。你之后仍可返回本页更新内容。"
-        : "After submission, report status will sync across course, assessment, and reminder entry points. You can still return here to update the content.",
+        ? "提交后，IPI 合规与福利团队将会跟进处理。你之后仍可返回本页补充或更新内容。"
+        : "Once submitted, IPI's Compliance & Welfare team will review your report. You can return to this page at any time to add or update information.",
       cancel: zh ? "取消" : "Cancel",
       confirm: zh ? "确认提交" : "Confirm submission",
-      submittedTitle: zh ? "报告已提交" : "Report submitted",
+      submittedTitle: zh ? “感谢您的报告” : “Thank you for your report”,
       submittedBody: zh
-        ? "IPI 已记录该报告。相关页面的上传入口已更新为“更新内容”。"
-        : "IPI has recorded this report. Related upload entry points now show update actions.",
-      close: zh ? "完成" : "Done",
+        ? “IPI 已收到您的报告，我们的合规与福利团队将会跟进处理。如需了解进度，请在举报页面点击”查看报告状态”，并保留您的参考编号。”
+        : “Your report has been received by IPI. Our Compliance & Welfare team will follow up in due course. To check progress, use the Track report status button on the report page and keep your reference number.”,
+      close: zh ? “完成” : “Done”,
       submit: zh ? "提交报告" : "Submit report",
       update: zh ? "更新内容" : "Update content",
       status: zh ? "已提交。你可以继续修改表格内容，并再次点击更新内容。" : "Submitted. You can keep editing the form and use Update content again.",
@@ -101,7 +101,7 @@
         "上传作业",
         "提交反思",
         "改为上传申请文件"
-      ].includes(text);
+      ].includes(text) && node.getAttribute?.("href") !== "submission.html";
 
       if (isReportSubmit) {
         node.textContent = submitted ? c.update : c.submit;
