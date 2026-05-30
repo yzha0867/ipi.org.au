@@ -77,7 +77,21 @@ document.getElementById("resume-summary").textContent = course.summary;
 document.getElementById("resume-progress").textContent = course.progress;
 document.getElementById("resume-fill").style.width = course.width;
 document.getElementById("resume-section-title").textContent = course.next;
-document.getElementById("resume-modules").innerHTML = course.modules.map((module, index) => `<div class="module-row"><div class="num">${index + 1}</div><div><strong>${module}</strong><span>${index === 0 ? "Ready to resume" : "Upcoming in this lesson"}</span></div><a class="btn ${index === 0 ? "btn-primary" : "btn-ghost"}" href="#">${index === 0 ? "Start" : "Preview"}</a></div>`).join("");
+document.getElementById("resume-modules").innerHTML = course.modules.map((module, index) => `<div class="module-row"><div class="num">${index + 1}</div><div><strong>${module}</strong><span>${index === 0 ? "Ready to resume" : "Upcoming in this lesson"}</span></div>${index === 0 ? `<a class="btn btn-primary" href="course_review.html?course=${code}">Start</a>` : `<button class="btn btn-ghost" type="button" data-preview-module="${module.replace(/"/g,'&quot;')}">Preview</button>`}</div>`).join("");
+document.getElementById("resume-modules").addEventListener("click", (e) => {
+  const btn = e.target.closest("[data-preview-module]");
+  if (!btn) return;
+  e.preventDefault();
+  showToast("Preview not available — complete earlier modules to unlock.");
+});
+function showToast(msg) {
+  let t = document.querySelector(".ipi-toast");
+  if (!t) { t = document.createElement("div"); t.className = "ipi-toast"; document.body.append(t); }
+  t.textContent = msg;
+  t.classList.add("show");
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove("show"), 3000);
+}
 </script>
 </body>
 </html>

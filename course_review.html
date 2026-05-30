@@ -64,7 +64,20 @@ const course = reviewCourses[code] || reviewCourses["IPI-IN-101"];
 document.getElementById("review-code").textContent = code;
 document.getElementById("review-title").textContent = course.title;
 document.getElementById("review-summary").textContent = course.summary;
-document.getElementById("review-modules").innerHTML = course.modules.map((module, index) => `<div class="module-row"><div class="num">${index + 1}</div><div><strong>${module}</strong><span>Completed · available for review</span></div><a class="btn btn-ghost" href="#">Review</a></div>`).join("");
+document.getElementById("review-modules").innerHTML = course.modules.map((module, index) => `<div class="module-row"><div class="num">${index + 1}</div><div><strong>${module}</strong><span>Completed · available for review</span></div><button class="btn btn-ghost" type="button" data-review-module="${module.replace(/"/g,'&quot;')}">Review</button></div>`).join("");
+document.getElementById("review-modules").addEventListener("click", (e) => {
+  const btn = e.target.closest("[data-review-module]");
+  if (!btn) return;
+  showToast("Now reviewing: " + btn.dataset.reviewModule);
+});
+function showToast(msg) {
+  let t = document.querySelector(".ipi-toast");
+  if (!t) { t = document.createElement("div"); t.className = "ipi-toast"; document.body.append(t); }
+  t.textContent = msg;
+  t.classList.add("show");
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove("show"), 3000);
+}
 </script>
 </body>
 </html>

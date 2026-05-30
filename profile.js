@@ -27,6 +27,11 @@
 
     menu.innerHTML = profileTemplate;
 
+    menu.querySelector('button[type="button"]').addEventListener("click", () => {
+      localStorage.clear();
+      window.location.href = "index.html";
+    });
+
     button.addEventListener("click", () => {
       const isOpen = selector.classList.toggle("open");
       button.setAttribute("aria-expanded", String(isOpen));
