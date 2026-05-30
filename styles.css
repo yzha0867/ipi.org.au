@@ -379,7 +379,7 @@ textarea { min-height: 118px; resize: vertical; }
 .module-row strong { display: block; }
 .module-row span { color: var(--text-secondary); font-size: 13px; }
 
-footer { background: var(--primary-deep); color: rgba(255,255,255,.75); padding: 48px 0 40px; margin-top: 80px; margin-bottom: 40px; }
+footer { background: var(--primary-deep); color: #1A4D2E; padding: 48px 0 40px; margin-top: 80px; margin-bottom: 40px; }
 .footer-inner { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 54px; }
 .footer-brand .tagline { color: #fff; font: 500 19px/1.45 Fraunces; max-width: 360px; }
 .un-badge { display: inline-flex; align-items: center; gap: 9px; border-radius: 999px; background: rgba(255,255,255,.12); padding: 8px 13px; color: #e7f3e5; font-weight: 800; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
