@@ -120,9 +120,9 @@
 <script src="region.js?v=2"></script>
 <script src="profile.js?v=2"></script>
 <script src="search.js?v=2"></script>
-<script src="notifications.js?v=2"></script>
-<script src="report-status.js?v=2"></script>
-<script src="document-status.js?v=2"></script>
+<script src="notifications.js?v=3"></script>
+<script src="report-status.js?v=3"></script>
+<script src="document-status.js?v=3"></script>
 <script>
   const childNameInput = document.querySelector("[data-child-name-input]");
   document.querySelectorAll('input[name="child-name-certainty"]').forEach((option) => {
@@ -252,7 +252,7 @@
       document.addEventListener("keydown", (e) => { if (e.key === "Escape") modal.hidden = true; });
     }
 
-    const raw = (() => { try { return JSON.parse(localStorage.getItem("ipi-report-submission") || "null"); } catch { return null; } })();
+    const raw = window.__ipiReportSubmission?.() || null;
     const body = modal.querySelector("[data-track-body]");
 
     if (!raw || !raw.submitted) {

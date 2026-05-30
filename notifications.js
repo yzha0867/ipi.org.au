@@ -51,18 +51,10 @@
 
   const isZh = () => document.documentElement.lang.toLowerCase().startsWith("zh");
   const isReportSubmitted = () => {
-    try {
-      return !!localStorage.getItem("ipi-report-submission");
-    } catch (error) {
-      return false;
-    }
+    return !!window.__ipiReportSubmission?.();
   };
   const isDocumentsSubmitted = () => {
-    try {
-      return !!localStorage.getItem("ipi-document-submission");
-    } catch (error) {
-      return false;
-    }
+    return !!window.__ipiDocumentsSubmitted?.();
   };
   let timeLabels = null;
 

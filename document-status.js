@@ -1,21 +1,21 @@
 (() => {
   const storageKey = "ipi-document-submission";
+  let submissionState = null;
 
   const isZh = () => document.documentElement.lang.toLowerCase().startsWith("zh");
-  const readSubmission = () => {
+  const clearSavedSubmission = () => {
     try {
-      return JSON.parse(localStorage.getItem(storageKey) || "null");
+      localStorage.removeItem(storageKey);
     } catch (error) {
-      return null;
+      // Local file previews may block storage; the page should still start clean.
     }
+  };
+  const readSubmission = () => {
+    return submissionState;
   };
   const writeSubmission = () => {
     const payload = { submitted: true, updatedAt: new Date().toISOString() };
-    try {
-      localStorage.setItem(storageKey, JSON.stringify(payload));
-    } catch (error) {
-      // Local file previews may block storage; keep the visible flow working.
-    }
+    submissionState = payload;
     return payload;
   };
 
@@ -25,14 +25,14 @@
       kicker: zh ? "文件" : "Documents",
       confirmTitle: zh ? "确认提交文件？" : "Submit these documents?",
       confirmBody: zh
-        ? '确认后将返回上一页。评估页和课程页的按钮会更新为"更新文件"，你可以随时回来替换或补充材料。'
-        : "After confirming, you will be returned to the previous page. You can come back any time using the Update documents button to replace or add files.",
+        ? '确认后将返回上一页。你可以随时回到此表单补充、替换或更新文件。'
+        : "Once submitted, you will be returned to the previous page. You can return to this form at any time to add, replace, or update documents.",
       cancel: zh ? "取消" : "Cancel",
       confirm: zh ? "确认提交" : "Confirm submission",
       submittedTitle: zh ? "文件已提交" : "Documents submitted",
       submittedBody: zh
-        ? '你的文件已提交成功。点击完成将返回上一页，日后可随时通过"更新文件"按钮补充或替换材料。'
-        : "Your documents have been received. Click Done to go back — you can update your files any time using the Update documents button.",
+        ? '你的文件已提交成功。点击完成将返回上一页。日后可通过"更新文件"补充、替换或更新材料。'
+        : "Your documents have been received. Click Done to return to the previous page. You can update your files later using the Update documents button.",
       close: zh ? "完成并返回" : "Done and return",
       submit: zh ? "提交文件" : "Submit documents",
       update: zh ? "更新文件" : "Update documents",
@@ -113,12 +113,10 @@
     const isKnownDocumentText = [
       "Upload documents",
       "Upload work",
-      "Submit reflection",
       "Update documents",
       "Update content",
       "上传文件",
       "上传作业",
-      "提交反思",
       "更新文件",
       "更新内容"
     ].includes(text);
@@ -188,6 +186,8 @@
     }
   }, true);
 
+  clearSavedSubmission();
+  window.__ipiDocumentsSubmitted = () => !!readSubmission();
   applySubmittedState();
   window.addEventListener("languagechange", applySubmittedState);
 })();

@@ -1,21 +1,21 @@
 (() => {
   const storageKey = "ipi-report-submission";
+  let submissionState = null;
 
   const isZh = () => document.documentElement.lang.toLowerCase().startsWith("zh");
-  const readSubmission = () => {
+  const clearSavedSubmission = () => {
     try {
-      return JSON.parse(localStorage.getItem(storageKey) || "null");
+      localStorage.removeItem(storageKey);
     } catch (error) {
-      return null;
+      // File previews can block storage; each page load should still start clean.
     }
+  };
+  const readSubmission = () => {
+    return submissionState;
   };
   const writeSubmission = () => {
     const payload = { submitted: true, updatedAt: new Date().toISOString() };
-    try {
-      localStorage.setItem(storageKey, JSON.stringify(payload));
-    } catch (error) {
-      // File previews can block storage; the current page still updates.
-    }
+    submissionState = payload;
     return payload;
   };
 
@@ -34,8 +34,8 @@
         : "Your report has been received by IPI. Our Compliance & Welfare team will follow up in due course. To check progress, use the Track report status button on the report page and keep your reference number.",
       close: zh ? "完成" : "Done",
       submit: zh ? "提交报告" : "Submit report",
-      update: zh ? "更新内容" : "Update content",
-      status: zh ? "已提交。你可以继续修改表格内容，并再次点击更新内容。" : "Submitted. You can keep editing the form and use Update content again.",
+      update: zh ? "更新报告信息" : "Update report information",
+      status: zh ? "已提交。你可以继续补充或更新报告信息。" : "Submitted. You can continue adding or updating report information.",
       updatedStat: zh ? "已提交内容，可继续更新" : "Submitted content can be updated",
       updatedNext: zh ? "已提交内容可更新" : "Submitted content available for update"
     };
@@ -143,11 +143,13 @@
   };
 
   window.__ipiReportSubmit = handleReportSubmitClick;
+  window.__ipiReportSubmission = readSubmission;
 
   document.addEventListener("click", (event) => {
     if (event.target.closest("[data-report-submit]")) handleReportSubmitClick();
   });
 
+  clearSavedSubmission();
   applySubmittedState();
   window.addEventListener("languagechange", applySubmittedState);
 })();
