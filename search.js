@@ -58,7 +58,7 @@
       title: "About IPI",
       category: "Institute",
       url: "about.html",
-      keywords: "about international parenting institute Geneva affiliated member states accessibility contact"
+      keywords: "about international parenting institute Australia member states accessibility contact"
     }
   ];
 

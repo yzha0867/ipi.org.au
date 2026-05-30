@@ -87,7 +87,6 @@
   const textTranslations = {
     zh: {
       "International Parenting Institute": "国际亲职研究院",
-      "Australia": "澳大利亚",
       "Application status": "申请状态",
       "Toddlerhood · In Progress": "Toddlerhood · 进行中",
       "Completion": "完成度",
