@@ -90,7 +90,7 @@
       "Application status": "申请状态",
       "Toddlerhood · In Progress": "Toddlerhood · 进行中",
       "Completion": "完成度",
-      "Valid through Dec 2026": "有效期至 2026 年 12 月",
+      "Valid through May 2027": "有效期至 2027 年 5 月",
       "Good afternoon,": "下午好，",
       "Jane": "Jane",
       "You are working towards your": "你正在完成",
