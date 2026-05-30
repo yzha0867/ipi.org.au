@@ -119,39 +119,35 @@
     }
   };
 
-  const attachSubmitHandler = () => {
-    const button = document.querySelector("[data-report-submit]") || [...document.querySelectorAll(".form-actions .btn-primary")]
-      .find((node) => /Submit report|提交报告|Update content|更新内容/.test(node.textContent.trim()));
-    if (!button) return;
-    button.dataset.reportSubmit = "";
+  const handleReportSubmitClick = () => {
+    const modal = ensureModal();
+    const c = copy();
+    modal.querySelector("[data-report-modal-title]").textContent = c.confirmTitle;
+    modal.querySelector("[data-report-modal-body]").textContent = c.confirmBody;
+    modal.querySelector("[data-report-cancel]").hidden = false;
+    modal.querySelector("[data-report-cancel]").textContent = c.cancel;
+    modal.querySelector("[data-report-confirm]").textContent = c.confirm;
+    modal.hidden = false;
 
-    button.addEventListener("click", () => {
-      const modal = ensureModal();
-      const c = copy();
-      modal.querySelector("[data-report-modal-title]").textContent = c.confirmTitle;
-      modal.querySelector("[data-report-modal-body]").textContent = c.confirmBody;
-      modal.querySelector("[data-report-cancel]").hidden = false;
-      modal.querySelector("[data-report-cancel]").textContent = c.cancel;
-      modal.querySelector("[data-report-confirm]").textContent = c.confirm;
-      modal.hidden = false;
-
-      const confirm = modal.querySelector("[data-report-confirm]");
-      confirm.onclick = () => {
-        writeSubmission();
-        applySubmittedState();
-        window.dispatchEvent(new Event("reportstatuschange"));
-        modal.querySelector("[data-report-modal-title]").textContent = c.submittedTitle;
-        modal.querySelector("[data-report-modal-body]").textContent = c.submittedBody;
-        modal.querySelector("[data-report-cancel]").hidden = true;
-        confirm.textContent = c.close;
-        confirm.onclick = () => {
-          modal.hidden = true;
-        };
-      };
-    });
+    const confirm = modal.querySelector("[data-report-confirm]");
+    confirm.onclick = () => {
+      writeSubmission();
+      applySubmittedState();
+      window.dispatchEvent(new Event("reportstatuschange"));
+      modal.querySelector("[data-report-modal-title]").textContent = c.submittedTitle;
+      modal.querySelector("[data-report-modal-body]").textContent = c.submittedBody;
+      modal.querySelector("[data-report-cancel]").hidden = true;
+      confirm.textContent = c.close;
+      confirm.onclick = () => { modal.hidden = true; };
+    };
   };
 
-  attachSubmitHandler();
+  window.__ipiReportSubmit = handleReportSubmitClick;
+
+  document.addEventListener("click", (event) => {
+    if (event.target.closest("[data-report-submit]")) handleReportSubmitClick();
+  });
+
   applySubmittedState();
   window.addEventListener("languagechange", applySubmittedState);
 })();
